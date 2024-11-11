@@ -1,5 +1,5 @@
 SRCS = Account.cpp tests.cpp
-NAME = phonebook
+NAME = Account
 CC = c++ -Wall -Wextra -Werror -std=c++98
 OBJS = ${SRCS:.cpp=.o}
 HEADERS = Account.hpp
