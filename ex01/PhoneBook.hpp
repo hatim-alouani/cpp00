@@ -20,7 +20,5 @@ class PhoneBook {
 
 };
 
-int isAlpha(std::string str);
-
 
 #endif

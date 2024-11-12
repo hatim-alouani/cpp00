@@ -18,6 +18,17 @@ PhoneBook::PhoneBook(){
     this->maxContact = 8;
 }
 
+int isAlpha(std::string ch){
+    int i = 0;
+
+    while (ch[i]){
+        if (ch[i] > '9' || ch[i] < '0')
+            return 1;
+        i++;
+    }
+    return 0;
+}
+
 void PhoneBook::AddContact() {
     std::string firstName;
     std::string lastName;
@@ -39,18 +50,34 @@ void PhoneBook::AddContact() {
     std::cout << "Enter your lastName : ";
     if (!std::getline(std::cin, lastName))
         exit(0);
+    if(lastName.empty()){
+        std::cout << "invalid Last name\n";
+        return ;
+    }
     system("clear");
     std::cout << "Enter your nickName : ";
     if(!std::getline(std::cin, nickName))
         exit(0);
+    if(nickName.empty()){
+        std::cout << "invalid Nick name\n";
+        return ;
+    }
     system("clear");
     std::cout << "Enter your phone nmber : ";
     if (!std::getline(std::cin, phoneNumber))
         exit(0);
+    if(phoneNumber.empty()){
+        std::cout << "invalid Phone number\n";
+        return ;
+    }
     system("clear");
     std::cout << "Enter your darkest secret : ";
     if (!std::getline(std::cin, darkestSecret))
         exit(0);
+    if(darkestSecret.empty()){
+        std::cout << "invalid Darkest secret\n";
+        return ;
+    }
     system("clear");
 
     this->contact[this->contactIndex].setFirstName(firstName);
@@ -63,9 +90,6 @@ void PhoneBook::AddContact() {
         contactCount++;
 }
 
-int isAlpha(char ch){
-    return (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z');
-}
 
 void PhoneBook::SearchContact(){
 
@@ -94,16 +118,20 @@ void PhoneBook::SearchContact(){
     std::string result;
     if (!std::getline(std::cin, result))
         exit(0);
-    int index = atoi(result.c_str());
-    if (isAlpha(result[0])){
-        std::cout << "Enter a valid digit\n";
+    if (result.empty()){
+        std::cout << "invalid index\n";
         return ;
     }
+    if (isAlpha(result)){
+        std::cout << "invalid index\n";
+        return ;
+    }
+    int index = atoi(result.c_str());
     if (index < 0 || index >= 8){
         std::cout << "Out of range\n";
         return ;
     }
-    if (index >= this->contactIndex){
+    if (index >= this->contactCount){
         std::cout << "The contact is empty\n";
         return ;
     }

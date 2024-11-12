@@ -34,6 +34,9 @@ int main() {
             std::cout << "Goodbye\n";
             break ;
         }
+        else {
+            std::cout << "Invalid command\n";
+        }
     }
 
     return 0;
